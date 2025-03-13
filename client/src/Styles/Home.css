@@ -1,0 +1,54 @@
+/* src/styles/Home.css */
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .home-header {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .home-header h1 {
+    margin: 0;
+  }
+  
+  .home-header .login-button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #4caf50;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #4caf50;
+    font-weight: bold;
+  }
+  
+  .home-header .login-button:hover {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .home-info {
+    margin-top: 40px;
+    font-size: 18px;
+  }
+  
+  .home-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .home-footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #555;
+  }
+  
