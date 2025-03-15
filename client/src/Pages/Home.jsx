@@ -1,37 +1,34 @@
-// src/pages/Home.jsx
 import React from "react";
-import { Link } from "react-router-dom"; // To add routing for the login page
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      {/* Header with Login Button */}
-      <header className="home-header">
-        <h1>Welcome to TheraBridge</h1>
-        <p>Your support system for therapists</p>
-        <Link to="/login" className="login-button">Login</Link>
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Navbar */}
+      <header className="flex justify-between items-center px-8 py-4 border-b shadow-md">
+        <h1 className="text-2xl font-bold">TheraBridge+</h1>
+        <Link to="/login" className="px-4 py-2 bg-black text-white rounded-md">Login</Link>
       </header>
 
-      {/* Section with Information about the Site */}
-      <section className="home-info">
-        <h2>What is TheraBridge?</h2>
-        <p>
-          TheraBridge is designed to help therapists manage their workload, track
-          their sessions, prevent burnout, and provide a community for support.
-        </p>
-        <h3>Our Features:</h3>
-        <ul>
-          <li>Session Tracking</li>
-          <li>Workload Management</li>
-          <li>Burnout Prevention</li>
-          <li>Community Support</li>
-        </ul>
-      </section>
+      {/* Main Content - Two Column Layout */}
+      <main className="flex flex-grow items-center justify-center px-16 py-12">
+        {/* Left Side - Large Gray Box */}
+        <div className="w-1/3 h-72 bg-gray-300 rounded-lg"></div>
 
-      {/* Footer */}
-      <footer className="home-footer">
-        <p>&copy; 2025 TheraBridge. All rights reserved.</p>
-      </footer>
+        {/* Right Side - Title & Placeholder Content */}
+        <div className="w-2/3 pl-12">
+          <h2 className="text-2xl font-semibold mb-4">TheraBridge+</h2>
+          
+          {/* Gray Placeholder Blocks for Text */}
+          <div className="space-y-4">
+            <div className="h-6 bg-gray-200 w-3/4 rounded-md"></div>
+            <div className="h-6 bg-gray-200 w-5/6 rounded-md"></div>
+            <div className="h-6 bg-gray-200 w-4/6 rounded-md"></div>
+            <div className="h-6 bg-gray-200 w-2/3 rounded-md"></div>
+            <div className="h-4 bg-gray-200 w-1/3 rounded-md"></div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
