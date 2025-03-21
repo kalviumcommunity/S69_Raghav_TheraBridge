@@ -1,15 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+
+dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Adjust origin based on frontend
+app.use(cookieParser());
 
-// Middleware
-app.use(cors());
-app.use(express.json());  // for parsing JSON bodies
-
-// Database connection
+// Database connection function
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
@@ -17,19 +19,21 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log("MongoDB connected");
-  } catch (error) {
-    console.error("MongoDB connection failed:", error);
+  } catch (err) {
+    console.error("MongoDB connection failed:", err);
+    process.exit(1); // Exit process if database fails
   }
 };
 
-// Define Routes
-app.get("/", (req, res) => {
-  res.send("TheraBridge API is running...");
-});
+// Import routes
+const authRoutes = require("./routes/auth");
+app.use("/api/auth", authRoutes);
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  connectDB();
-});
+// Start server after DB connection
+const startServer = async () => {
+  await connectDB();
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+};
+
+startServer();
