@@ -1,5 +1,6 @@
 // src/pages/Login.jsx
 import React from "react";
+import { Link } from "react-router-dom";  // Import Link for routing
 
 const Login = () => {
   return (
@@ -11,8 +12,14 @@ const Login = () => {
         <input type="password" placeholder="Password" required />
         <button type="submit">Login</button>
       </form>
+      {/* Signup Button */}
+      <div className="signup-link">
+        <p>Don't have an account?</p>
+        <Link to="/signup">Signup</Link> {/* Link to the Signup page */}
+      </div>
     </div>
   );
 };
 
 export default Login;
+
