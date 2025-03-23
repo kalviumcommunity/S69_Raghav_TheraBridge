@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-// import Dashboard from "./Pages/Dashboard"; // Ensure you have a Dashboard component
+import Dashboard from "./Pages/Dashboard"; // Ensure this component exists
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
 
-  // Check if the user is authenticated by looking for a JWT token
+  // Check authentication status whenever token changes
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
+    const handleStorageChange = () => {
+      setIsAuthenticated(!!localStorage.getItem("token"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   // Protected Route Wrapper
@@ -25,7 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> */}
+        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
       </Routes>
     </Router>
   );

@@ -5,18 +5,30 @@ import axios from "axios";
 import "../Styles/Signup.css";
 
 const Signup = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // To toggle password visibility
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Clear previous errors
 
+    // Validate password (requires at least one uppercase letter, one special character)
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError("Password must be at least 8 characters long, include a capital letter and a special character.");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:5000/api/auth/signup", {
+        name,
         email,
+        phone,
         password,
       });
 
@@ -36,6 +48,17 @@ const Signup = () => {
         <h2>Sign Up</h2>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter your full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            autoComplete="off"
+          />
+
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -47,16 +70,36 @@ const Signup = () => {
             autoComplete="off"
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="phone">Phone Number</label>
           <input
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            id="phone"
+            type="tel"
+            placeholder="Enter your phone number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
             autoComplete="off"
           />
+
+          <label htmlFor="password">Password</label>
+          <div className="password-container">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="off"
+            />
+            <button
+              type="button"
+              className="show-password-button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
 
           <button type="submit" className="signup-button">Signup</button>
         </form>

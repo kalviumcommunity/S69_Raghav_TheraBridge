@@ -1,0 +1,125 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2D3748;
+    color: white;
+    padding: 20px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-item.active {
+    background-color: #4A5568;
+}
+
+.menu-item:hover {
+    background-color: #4A5568;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #F7FAFC;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #4A5568;
+    font-size: 1.5rem;
+    margin-right: 20px;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: #4A5568;
+    font-size: 1.5rem;
+}
+
+.dashboard-header {
+    margin: 20px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: white;
+}
+
+.icon.green {
+    background-color: #48BB78;
+}
+
+.icon.blue {
+    background-color: #4299E1;
+}
+
+.icon.orange {
+    background-color: #ED8936;
+}
+
+.icon.red {
+    background-color: #F56565;
+}
